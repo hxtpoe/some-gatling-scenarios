@@ -6,7 +6,7 @@ import user.PersonsEndPoints
 
 object Show {
   def listPaginated(page: Int) = http("Users - list paginated")
-    .get(PersonsEndPoints.listPaginatedPath(1)).asJSON
+    .get(PersonsEndPoints.listPaginatedPath(page)).asJSON
 
   def listPaginatedWithDataExtraction(page: Int) = listPaginated(page)
     .check(status.is(200))
