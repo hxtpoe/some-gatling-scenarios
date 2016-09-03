@@ -9,6 +9,7 @@ object Show {
     .get(PersonsEndPoints.listPaginatedPath(1)).asJSON
 
   def listPaginatedWithDataExtraction(page: Int) = listPaginated(page)
+    .check(status.is(200))
     .check(jsonPath("$[*].name").findAll.saveAs("usernames"))
 
   def findByName(name: String) = http("Users - find by name")
