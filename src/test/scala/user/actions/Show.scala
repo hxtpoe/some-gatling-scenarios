@@ -5,19 +5,19 @@ import io.gatling.http.Predef._
 import user.PersonsEndPoints
 
 object Show {
-  def listPaginated(page: Int) = http("Users - list paginated")
+  def listPaginated(page: Int) = http("list paginated")
     .get(PersonsEndPoints.listPaginatedPath(page)).asJSON
 
   def listPaginatedWithDataExtraction(page: Int) = listPaginated(page)
     .check(status.is(200))
     .check(jsonPath("$[*].name").findAll.saveAs("usernames"))
 
-  def findByName(name: String) = http("Users - find by name")
+  def findByName(name: String) = http("find by name")
     .get(PersonsEndPoints.findByNamePath((name)))
 
-  val count = http("Users - count").get(PersonsEndPoints.count)
+  val count = http("count").get(PersonsEndPoints.count)
 
-  val clean = http("Users - clean").get(PersonsEndPoints.clean)
+  val clean = http("clean").get(PersonsEndPoints.clean)
 
-  val reset = http("Users - reset").get(PersonsEndPoints.reset)
+  val reset = http("reset").get(PersonsEndPoints.reset)
 }

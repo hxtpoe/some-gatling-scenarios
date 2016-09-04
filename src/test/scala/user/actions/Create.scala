@@ -8,7 +8,7 @@ import user.PersonsEndPoints
 import user.model.User
 
 object Create {
-  def single(user: User) = http("Users - create single")
+  def single(user: User) = http("create single")
     .post(PersonsEndPoints.createSingle)
     .header("Content-Type", "application/json")
     .body(user)
@@ -16,7 +16,7 @@ object Create {
   def bulk(list: Seq[User]) = {
     val funnyConversion = StringBody(Json.toJson(list).toString())
 
-    http("Users - create bulk")
+    http("create bulk")
       .post(PersonsEndPoints.createBulkPath)
       .header("Content-Type", "application/json")
       .body(funnyConversion)
