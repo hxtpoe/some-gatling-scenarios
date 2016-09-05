@@ -10,7 +10,7 @@ object Show {
 
   def listPaginatedWithDataExtraction(page: Int) = listPaginated(page)
     .check(status.is(200))
-    .check(jsonPath("$[*].name").findAll.saveAs("usernames"))
+    .check(jsonPath("$[0:10].name").findAll.saveAs("usernames"))
 
   def findByName(name: String) = http("find by name")
     .get(PersonsEndPoints.findByNamePath((name)))
